@@ -1,0 +1,36 @@
+#!groovy
+/**
+ *
+ */
+node {
+    // use the id of the globally configured maven instance
+    def mvnTool = tool 'maven360'
+    def javaHome = tool 'java11'
+    //def pom = readMavenPom file: 'pom.xml'
+
+
+    //delete working dir
+    stage('Cleanup workspace'){
+        deleteDir()
+    }
+
+    stage ("Checkout repo") {
+        //checkout branch
+        git branch: 'master', credentialsId: 'Bitbucket', url: params.git_repo
+    }
+
+    stage('Build maven project') {
+        //     // execute maven
+        sh """ 
+    cd ${workspace}
+    JAVA_HOME=$javaHome ${mvnTool}/bin/mvn clean install -DskipTests
+    """
+    }
+
+    stage('Do Test') {
+        sh """
+    cd ${workspace}
+    JAVA_HOME=$javaHome ${mvnTool}/bin/mvn test"""
+    }
+
+}

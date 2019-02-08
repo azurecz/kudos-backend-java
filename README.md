@@ -1,2 +1,2 @@
-# kudos-backend-java
-Backend application
+# Kudos-service
+Kudos domain microservice

@@ -1,0 +1,62 @@
+spring:
+  profiles:
+    active: ${SPRING-PROFILES-ACTIVE}
+
+azure:
+  keyvault:
+    uri: https://inca-test-kv.vault.azure.net
+    client-id: ${SP_CLIENT_ID}
+    client-key: ${SP_CLIENT_KEY}
+  cosmosdb:
+    uri: https://inca-test.documents.azure.com:443/
+    key: ${cosmosdb-password}
+    database: UsersDB
+    consistency-level: session
+    allow-telemetry: true
+  application-insights:
+    instrumentation-key: f038a8db-8660-4c0b-93d7-c64bcebead90
+  eventgrid:
+    keyname: aeg-sas-key
+    keypass: ${eventgrid-sas-key}
+    uri: https://inca-event-grid.westeurope-1.eventgrid.azure.net/api/events?api-version=2018-01-01
+  search:
+    uri: https://incacsas.search.windows.net/indexes/inca-test-documentdb-index/docs?api-version=2017-11-11-Preview&searchFields=firstname,surname,usernumber&queryType=full&top=30&search=
+    keyname: api-key
+    keypass: ${search-sas-key}
+
+config:
+    security:
+        cors:
+            allowedOrigin: ${ALLOWED-ORIGINS}
+        enabled: true
+db:
+    password: ${db-password}
+    url: ${DB-USERS-URL}
+    username: ${db-username}
+logging:
+    level:
+        org:
+            hibernate: warn
+server:
+    port: 8891
+    application:
+        name: Kudos-service
+version: '@parent.version@'
+
+api:
+  version: v1
+
+webApi:
+    url: 'https://www.csast.csas.cz/webapi/api/v1/phonebook/employees/'
+    key: ${web-api-key}
+    proxy:
+        enable: false
+        address: 'proxy.csin.cz'
+        port: 8080
+import:
+    organization:
+        cron: ${IMPORT-ORGANIZATION-CRON}
+        email:
+            overwrite: ${IMPORT-ORGANIZATION-EMAIL-OVERWRITE}
+            address: ${IMPORT-ORGANIZATION-EMAIL-ADDRESS}
+

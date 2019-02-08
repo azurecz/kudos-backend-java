@@ -1,0 +1,43 @@
+config:
+    security:
+        cors:
+            allowedOrigin: http://localhost:8082
+        enabled: true
+
+env: local
+logging:
+    level:
+        org:
+            hibernate: warn
+server:
+    port: 8891
+spring:
+    profiles:
+        active: default
+    application:
+        name: Kudos-service
+
+
+version: '@parent.version@'
+
+api:
+    version: v1
+
+azure:
+  cosmosdb:
+    uri: https://kudos-cosmosdb-jmu6m5q6suefk.documents.azure.com:443/
+    key: PkJsetIhPcpUmXjd2Jk9bW80EG779nlUBRnlQ2ux5WBaDuDtY0L3iR8n5N9FB8lWMejTUT5gjsSy9Xo2yvem8w==
+    database: kudos
+    consistency-level: session
+    allow-telemetry: true
+
+  application-insights:
+    instrumentation-key: 9fc0202d-7bd3-4a1d-b9e4-a80d378a876e
+#  eventgrid:
+#    keyname: aeg-sas-key
+#    keypass: vXa6bU5zc+pDYV/6tYBST/a0lofPLMXQDQ6PLRPlnvU=
+#    uri: https://inca-event-grid.westeurope-1.eventgrid.azure.net/api/events?api-version=2018-01-01
+#  search:
+#    uri: https://incacsas.search.windows.net/indexes/inca-test-documentdb-index/docs?api-version=2017-11-11-Preview&searchFields=firstname,surname,usernumber&queryType=full&top=30&search=
+#    keyname: api-key
+#    keypass: 33BB541C0B59D66D07C2101D002F605A

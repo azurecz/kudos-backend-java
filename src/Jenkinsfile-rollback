@@ -1,0 +1,45 @@
+#!groovy
+/**
+ * Created by cen80475 on 3.11.2017.
+ */
+
+@Library('incajenkins@1.4') import cz.csas.inca.jenkins.NotifyService
+node {
+
+    // Configuration.class
+    def config
+
+    // NotifyService.class
+    def notifyService
+
+    // application name
+    // application name
+    def applicationName = "users-service"
+
+    def additionalPath = "${applicationName}/users-service-war"
+
+
+    //delete working dir
+    stage('Cleanup workspace'){
+        deleteDir()
+    }
+
+    stage ("Set version to rollback") {
+        config = setVersion gitRepo: params.git_repo,gitBranch: "master"
+        config.appEnv = params.appenv
+        config.applicationName = applicationName
+        notifyService = new NotifyService(this, "Users service")
+        notifyService.initGitVars()
+
+    }
+
+    stage("Maven resources") {
+        config.additionalPath = applicationName
+        mavenRollback config
+    }
+
+    stage("Deploy") {
+        config.additionalPath = additionalPath
+        clusterDeploySpecific config
+    }
+}

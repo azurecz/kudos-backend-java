@@ -1,0 +1,62 @@
+#!groovy
+/**
+ * Created by cen80475 on 3.11.2017.
+ */
+
+@Library('incajenkins') import cz.csas.inca.jenkins.NotifyService
+node {
+
+    // Configuration.class
+    def config
+
+    // NotifyService.class
+    def notifyService
+
+    // application name
+    def applicationName = "Kudos-service"
+
+    def additionalPath = "${applicationName}-war"
+
+    // delete working dir
+    stage('Cleanup workspace'){
+        deleteDir()
+    }
+
+    stage ("Checkout repo & validate version") {
+        config = checkoutAndValidate gitRepo: params.git_repo, gitBranch: params.gitBranch
+        config.appEnv = params.appenv
+        config.applicationName = applicationName
+        notifyService = new NotifyService(this, "Kudos service")
+        notifyService.initGitVars()
+    }
+
+    stage('Build maven project') {
+        config.java10 = true
+        mavenBuild config
+    }
+
+    stage('Do Test') {
+        mavenTest config
+        notifyService.initTestVars()
+    }
+
+    stage('SonarQube analysis') {
+        withSonarQubeEnv('sonarserver') {
+            mavenSonar config
+        }
+    }
+
+    stage('Release new version') {
+        mavenRelease config
+    }
+
+    stage('Publish docker image to registry'){
+        config.additionalPath = additionalPath
+        mavenDocker config
+    }
+
+    stage("Deploy") {
+        clusterDeploy config
+        notifyService.notifySlackDefault()
+    }
+}
