@@ -219,11 +219,6 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>inca-artifactory-snapshots</name>
-			<url>http://40.68.44.144/artifactory/project-inca-snapshots</url>
-		</snapshotRepository>
 	</distributionManagement>
 
 	<repositories>
