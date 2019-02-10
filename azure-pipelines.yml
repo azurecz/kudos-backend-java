@@ -22,10 +22,12 @@ steps:
     goals: 'package'
 
 
-# - script: |
-#     echo Starting the deploy
-#     mvn deploy
-#   displayName: 'Deploy with Maven'
+- script: |
+    echo Starting the release
+    mvn -DskipTests -DreleaseVersion=1.0.0 -DtagNameFormat=release_@1.0.0 -Dusername=tslavik -Dpassword=Tomasek11. release:clean release:prepare release:perform -B
+   displayName: 'Release a new version'
+
+# "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
 - task: Maven@3
   inputs:
