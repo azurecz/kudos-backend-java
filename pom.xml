@@ -204,11 +204,6 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-		<!-- <repository>
-			<id>central</id>
-			<name>inca-artifactory-releases</name>
-			<url>http://40.68.44.144/artifactory/project-inca-releases</url>
-		</repository> -->
 		<repository>
 			<id>dev-azure-com-toslavik-artifactory</id>
 			<url>https://pkgs.dev.azure.com/toslavik/_packaging/artifactory/maven/v1</url>
@@ -222,17 +217,6 @@
 	</distributionManagement>
 
 	<repositories>
-		<!-- <repository>
-			<id>artifactory</id>
-			<name>artifactory</name>
-			<url>http://40.68.44.144/artifactory/project-inca-releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository> -->
 		<repository>
 			<id>dev-azure-com-toslavik-artifactory</id>
 			<url>https://pkgs.dev.azure.com/toslavik/_packaging/artifactory/maven/v1</url>
@@ -243,17 +227,6 @@
 				<enabled>true</enabled>
 			</snapshots>
 			</repository>
-		<repository>
-			<id>artifactory-csas</id>
-			<name>artifactory-csas</name>
-			<url>http://40.68.44.144/artifactory/csas-releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 		<repository>
 			<id>maven-central</id>
 			<name>maven-central</name>
