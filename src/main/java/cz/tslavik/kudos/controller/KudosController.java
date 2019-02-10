@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import cz.tslavik.kudos.entity.Kudos;
+import cz.tslavik.kudos.repository.cosmos.*;
 
 @RestController
 @RequestMapping("/api/v1/kudos")
@@ -32,7 +33,7 @@ public class KudosController {
     RestTemplate restTemplate;
 
     @Autowired
-    cz.tslavik.kudos.repository.cosmos.KudosRepository KudosRepository;
+    KudosRepository KudosRepository;
 
     @Autowired
     private ModelMapper modelMapper;

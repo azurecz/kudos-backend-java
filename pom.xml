@@ -134,18 +134,6 @@
 			<artifactId>applicationinsights-logging-logback</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>2.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.4.1</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -239,7 +227,7 @@
 	</distributionManagement>
 
 	<repositories>
-		<repository>
+		<!-- <repository>
 			<id>artifactory</id>
 			<name>artifactory</name>
 			<url>http://40.68.44.144/artifactory/project-inca-releases</url>
@@ -249,7 +237,7 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository>
+		</repository> -->
 		<repository>
 			<id>dev-azure-com-toslavik-artifactory</id>
 			<url>https://pkgs.dev.azure.com/toslavik/_packaging/artifactory/maven/v1</url>
