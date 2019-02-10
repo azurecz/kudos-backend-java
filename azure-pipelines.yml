@@ -23,16 +23,16 @@ steps:
     goals: 'package'
 
 
-- script: |
-    echo Starting the deploy
-    mvn deploy
-  displayName: 'Deploy with Maven'
+# - script: |
+#     echo Starting the deploy
+#     mvn deploy
+#   displayName: 'Deploy with Maven'
 
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.11'
-#     jdkArchitectureOption: 'x64'
-#     goals: 'deploy'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    goals: 'deploy'
