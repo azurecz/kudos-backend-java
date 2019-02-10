@@ -25,8 +25,8 @@ api:
 
 azure:
   cosmosdb:
-    uri: https://kudos-cosmosdb-jmu6m5q6suefk.documents.azure.com:443/
-    key: PkJsetIhPcpUmXjd2Jk9bW80EG779nlUBRnlQ2ux5WBaDuDtY0L3iR8n5N9FB8lWMejTUT5gjsSy9Xo2yvem8w==
+    uri: https://kudos-cosmosdb-ftjvauykldrqe.documents.azure.com:443/
+    key: p6eeE4yjYaJzb8mq38cwVbpXfAX6yXSxqXdu3gMofeJWbkm05wSJNGSMNWYYaohq1g5ruZCCzS1K6k9yZeZtug==
     database: kudos
     consistency-level: session
     allow-telemetry: true
