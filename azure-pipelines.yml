@@ -19,7 +19,6 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    mavenAuthenticateFeed: true
     goals: 'package'
 
 
@@ -35,4 +34,5 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
+    mavenAuthenticateFeed: true
     goals: 'deploy'
