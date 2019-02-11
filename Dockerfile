@@ -16,5 +16,5 @@ ENV PATH $PATH:/usr/lib/jvm/java-11-openjdk/jre/bin:/usr/lib/jvm/java-11-openjdk
 
 
 EXPOSE 8080
-ADD /target kudos-be-java.jar
-ENTRYPOINT ["java","-jar","kudos-service.jar"]
+ADD /target kudos-be.jar
+ENTRYPOINT ["java","-jar","kudos-be.jar"]

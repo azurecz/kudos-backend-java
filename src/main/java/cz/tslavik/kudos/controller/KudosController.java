@@ -56,8 +56,7 @@ public class KudosController {
 
 
     @Transactional
-    @RequestMapping(method = RequestMethod.POST,
-            consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Void> createKudos(@RequestBody Kudos Kudos) {
 
         //checkRoleDelivery(updateReadLayer(user,userRole,false).getStatusCode(),user, userRole);
@@ -68,15 +67,14 @@ public class KudosController {
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.DELETE, value = "/remove",
-            consumes = "application/json")
+    @RequestMapping(method = RequestMethod.DELETE, consumes = "application/json")
     public ResponseEntity<Void> removeKudos(@RequestBody Kudos Kudos) {
 
 
         //checkRoleDelivery(updateReadLayer(user,userRole,false).getStatusCode(),user, userRole);
         //KudosRepository.deleteById(Kudos.getId()); you have to implement by yourself
         KudosRepository.delete(Kudos);
-        telemetryClient.trackEvent("Kudos created");
+        telemetryClient.trackEvent("Kudos removed");
         ResponseEntity<Void> responseEntity = new ResponseEntity<>(HttpStatus.OK);
         return responseEntity;
     }
