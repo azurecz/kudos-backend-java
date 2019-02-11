@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+variables:
+- group: docker-registry
+
 steps:
 - task: Maven@3
   inputs:
@@ -19,13 +22,23 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    goals: 'package -DskipTest'
 
 
-- script: |
-    echo Starting the release
-    mvn -DskipTests -DreleaseVersion=1.0.0 -DtagNameFormat=release_@1.0.0 -Dusername=tslavik -Dpassword=Tomasek11. release:clean release:prepare release:perform -B
-  displayName: 'Release a new version'
+- bash: |
+   echo $(acr-name-demo)
+   # dockerfile
+   docker build -t $(acr-name-demo)/kudos-be:$(Build.BuildId) . # should be tagged $(Build.BuildId) or ReleaseId
+   docker login -u $(acr-name-demo-user) -p $(acr-psw) $(acr-name-demo)
+   docker push $(acr-name-demo)/kudos-be:$(Build.BuildId) 
+  #  mvn docker:build docker:push -Ddocker.username=$(acr-name-demo-user) -Ddocker.password=$(acr-psw) -DimageVersion=$(appVersion)"
+  displayName: 'Build, tag and push image'
+
+
+# - script: |
+#     echo Starting the release
+#     mvn -DskipTests -DreleaseVersion=1.0.0 -DtagNameFormat=release_@1.0.0 -Dusername=tslavik -Dpassword=Tomasek11. release:clean release:prepare release:perform -B
+#   displayName: 'Release a new version'
 
 # "$(settingsxml.secureFilePath)" "${HOME}/.m2/settings.xml"
 
