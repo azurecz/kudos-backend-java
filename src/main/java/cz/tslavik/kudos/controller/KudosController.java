@@ -17,17 +17,10 @@ import cz.tslavik.kudos.entity.Kudos;
 import cz.tslavik.kudos.repository.cosmos.*;
 
 @RestController
-@RequestMapping("/api/v1/kudos")
+@RequestMapping("/api/${api.version}/kudos")
 public class KudosController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KudosController.class);
-
-//    @Value("${azure.search.uri}")
-//    private String searchUri;
-//    @Value("${azure.search.keyname}")
-//    private String keyname;
-//    @Value("${azure.search.keypass}")
-//    private String keypass;
 
     @Autowired
     RestTemplate restTemplate;
@@ -42,13 +35,9 @@ public class KudosController {
     TelemetryClient telemetryClient;
 
 
-
-    //@PreAuthorize("hasAnyRole(T(cz.csas.users.enums.UserRoles).USER.toString(), T(cz.csas.users.enums.UserRoles).DEVELOPER.toString())")
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = "application/json")
     public ResponseEntity<Kudos> getByKudosId(@PathVariable String id) {
 
-        //Kudos KudosList = KudosRepository.findById(id).stream().findFirst().orElse(null);
-      //  KudosRepository.save(Kudos.builder().id("1").createdby("2500").build());
         telemetryClient.trackEvent("Request called");
         Kudos Kudos =KudosRepository.getKudosById(id).stream().findFirst().orElse(null);
         return new ResponseEntity<Kudos>(Kudos,HttpStatus.OK);
@@ -84,18 +73,5 @@ public class KudosController {
     public ResponseEntity<Page<Kudos>> getAll(Pageable pageable,@RequestParam(required = false) String cosmosToken) {
         LOGGER.debug("getUsers {}", pageable);
         return new ResponseEntity<Page<Kudos>>(KudosRepository.findAll(pageable),HttpStatus.OK);
-    }
-
-    //@PreAuthorize("hasAnyRole(T(cz.csas.users.enums.UserRoles).USER.toString(), T(cz.csas.users.enums.UserRoles).DEVELOPER.toString())")
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json", value="/paging")
-    public ResponseEntity<Page<Kudos>> getKudoss(Pageable pageable,@RequestParam(required = false) String cosmosToken) {
-        LOGGER.debug("getUsers {}", pageable);
-        Page<Kudos> Kudoss = null;
-//            Pageable dbPageRequest = new DocumentDbPageRequest(pageable.getPageNumber(), pageable.getPageSize(),cosmosToken);
-            Pageable dbPageRequest = new DocumentDbPageRequest(1, 10,cosmosToken);
-            Page<Kudos> usersPage = KudosRepository.findAll(dbPageRequest);
-
-        return new ResponseEntity<Page<Kudos>>(Kudoss,HttpStatus.OK);
-
     }
 }

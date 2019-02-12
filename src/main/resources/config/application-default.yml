@@ -16,23 +16,22 @@ spring:
         active: default
     application:
         name: Kudos-service
+api:
+    version: v2
 
 
 version: '@parent.version@'
 
-api:
-    version: v1
-
 azure:
-  cosmosdb:
-    uri: https://kudos-cosmosdb-ftjvauykldrqe.documents.azure.com:443/
-    key: p6eeE4yjYaJzb8mq38cwVbpXfAX6yXSxqXdu3gMofeJWbkm05wSJNGSMNWYYaohq1g5ruZCCzS1K6k9yZeZtug==
-    database: kudos
-    consistency-level: session
-    allow-telemetry: true
+    cosmosdb:
+        uri: https://kudos-cosmosdb-ftjvauykldrqe.documents.azure.com:443/
+        key: p6eeE4yjYaJzb8mq38cwVbpXfAX6yXSxqXdu3gMofeJWbkm05wSJNGSMNWYYaohq1g5ruZCCzS1K6k9yZeZtug==
+        database: kudos
+        consistency-level: session
+        allow-telemetry: true
+    application-insights:
+        instrumentation-key: 9fc0202d-7bd3-4a1d-b9e4-a80d378a876eapp
 
-  application-insights:
-    instrumentation-key: 9fc0202d-7bd3-4a1d-b9e4-a80d378a876e
 #  eventgrid:
 #    keyname: aeg-sas-key
 #    keypass: vXa6bU5zc+pDYV/6tYBST/a0lofPLMXQDQ6PLRPlnvU=

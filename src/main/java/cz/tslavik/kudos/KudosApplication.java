@@ -9,7 +9,7 @@ public class KudosApplication {
 
 	public static void main(String[] args) {
 
-		String activeProfile = System.getenv().getOrDefault("SPRING-PROFILES-ACTIVE", "default");
+		String activeProfile = System.getenv().getOrDefault("SPRING_PROFILES_ACTIVE", "default");
 		System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, activeProfile);
 		SpringApplication.run(KudosApplication.class, args);
 	}
