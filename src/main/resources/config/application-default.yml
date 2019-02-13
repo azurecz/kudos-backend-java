@@ -30,7 +30,7 @@ azure:
         consistency-level: session
         allow-telemetry: true
     application-insights:
-        instrumentation-key: 9fc0202d-7bd3-4a1d-b9e4-a80d378a876eapp
+        instrumentation-key: 69f3cd8b-85f0-4bb7-b5a8-4ec7d6d0cd49
 
 #  eventgrid:
 #    keyname: aeg-sas-key

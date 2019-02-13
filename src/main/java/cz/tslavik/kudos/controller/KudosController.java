@@ -59,8 +59,6 @@ public class KudosController {
     @RequestMapping(method = RequestMethod.DELETE, consumes = "application/json")
     public ResponseEntity<Void> removeKudos(@RequestBody Kudos Kudos) {
 
-
-        //checkRoleDelivery(updateReadLayer(user,userRole,false).getStatusCode(),user, userRole);
         //KudosRepository.deleteById(Kudos.getId()); you have to implement by yourself
         KudosRepository.delete(Kudos);
         telemetryClient.trackEvent("Kudos removed");

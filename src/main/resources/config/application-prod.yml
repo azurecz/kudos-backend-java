@@ -1,42 +1,28 @@
 spring:
   profiles:
-    active: ${SPRING-PROFILES-ACTIVE}
-
-azure:
-  keyvault:
-    uri: https://inca-prod-kv.vault.azure.net
-    client-id: ${SP_CLIENT_ID}
-    client-key: ${SP_CLIENT_KEY}
-
-config:
-    security:
-        cors:
-            allowedOrigin: ${ALLOWED-ORIGINS}
-        enabled: true
-db:
-    password: ${db-password}
-    url: ${DB-USERS-URL}
-    username: ${db-username}
+    active: ${SPRING_PROFILES_ACTIVE}
+  security:
+      cors:
+          allowedOrigin: ${ALLOWED_ORIGINS}
+          enabled: true
 logging:
     level:
         org:
             hibernate: warn
 server:
     port: 8891
-    application:
-        name: Kudos-service
+
 version: '@parent.version@'
 
-webApi:
-    url: 'https://www.csas.cz/webapi/api/v1/phonebook/employees/'
-    key: ${web-api-key}
-    proxy:
-        enable: false
-        address: 'proxy.csin.cz'
-        port: 8080
-import:
-    organization:
-        cron: ${IMPORT-ORGANIZATION-CRON}
-        email:
-            overwrite: ${IMPORT-ORGANIZATION-EMAIL-OVERWRITE}
-            address: ${IMPORT-ORGANIZATION-EMAIL-ADDRESS}
+api:
+    version: v2
+
+azure:
+    cosmosdb:
+        uri: "#{systemEnvironment['COSMOS_URI']?:'**'}"
+        key: "#{systemEnvironment['COSMOS_KEY']?:'**'}"
+        database: "#{systemEnvironment['COSMOS_DB_NAME']?:'**'}"
+        consistency-level: session
+        allow-telemetry: true
+    application-insights:
+        instrumentation-key: "#{systemEnvironment['APP_INSIGHTS_KEY']?:'**'}"
